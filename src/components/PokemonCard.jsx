@@ -1,15 +1,15 @@
 
 
-function PokemonCard(props) {console.log(props)
-  //const pokemon = pokemonList[0];
+function PokemonCard({pokemon}) {
+ 
 return (
 <figure>
-      {props.pokemon.imgSrc!==""?(<img src={props.pokemon.imgSrc} alt={props.pokemon.name} />
+      {pokemon.imgSrc!==""?(<img src={pokemon.imgSrc} alt={pokemon.name} />
       ):(
       <p>"???"</p>
       )}
 
-    <figcaption>{props.pokemon.name}</figcaption>
+    <figcaption>{pokemon.name}</figcaption>
     
     </figure>
 )}
