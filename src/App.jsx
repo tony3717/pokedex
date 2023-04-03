@@ -1,60 +1,78 @@
-import React, { useState } from 'react';
-import PokemonCard from './components/PokemonCard.jsx'
-import NavBar from './NavBar.jsx'
+
+import { useState } from "react";
+import PokemonCard from "./components/PokemonCard";
+import NavBar from "./NavBar";
+import { useEffect } from "react";
+
+
 
 const pokemonList = [
   {
-      name: "bulbasaur",
-      imgSrc:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    name: "bulbasaur",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    color: "#5FC47C"
     },
-    {
-      name: "charmander",
-      imgSrc:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  {
+    name: "charmander",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+    color: "coral"
     },
-    {
-      name: "squirtle",
-      imgSrc:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  {
+    name: "squirtle",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    color: "#81D6D0"
     },
-    {
-      name: "pikachu",
-      imgSrc:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+  {
+    
+    name: "pikachu",
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+    color: "#E2F94E"
     },
-    {
-      name: "mew",
-    },
-  ];
-
-
+  {
+    name: "mew",
+    color: "#AE00FF"
+  },
+];
 
 function App() {
+  const [index, setIndex] = useState(0);
+  const [color, setColor] = useState(pokemonList[0].color);
+  const pokemon = pokemonList[index];
+  function handlePlusClick() {
+    setIndex(index + 1);
+    
+  }
 
-  const [pokemonIndex, setPokemonIndex] = useState(0)
+  function handleMinusClick() {
+    setIndex(index - 1);
+    
 
-  
+  }
 
-  
-const handleClickNext = () => {
-  setPokemonIndex(pokemonIndex+1)
-}
-const handleClickBack =() => {
-  setPokemonIndex(pokemonIndex-1)
-}
+  useEffect(
+    () => {
+      alert("hello pokemon trainer :) ")
+    },
+    []
+  );
+
 
   return (
-      <div>
-           <NavBar
-        pokemonIndex={pokemonIndex}
-        handleClickNext={handleClickNext}
-        handleClickBack={handleClickBack}
+    <div>
+      <NavBar
+        color={color}
+        index={index}
+        setIndex={setIndex}
+        pokemonList={pokemonList}
+        setColor={setColor}
       />
-          <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-      </div>
-    
-  )
+      <PokemonCard pokemon={pokemon} />
+    </div>
+  );
 }
 
-export default App
+export default App;
